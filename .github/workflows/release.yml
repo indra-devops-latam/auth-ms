@@ -19,9 +19,9 @@ jobs:
       aws_region: ${{ vars.AWS_REGION }}
       ecr_repository: ${{ vars.ECR_REPOSITORY_DEV }}
       eks_cluster: ${{ vars.EKS_CLUSTER_DEV }}
-      namespace: client-gateway
-      helm_release: client-gateway
-      chart_path: ./k8s/client-gateway
+      namespace: auth-ms
+      helm_release: auth-ms
+      chart_path: ./k8s/auth-ms
       deploy: true
     secrets: inherit
 
@@ -33,8 +33,8 @@ jobs:
       aws_region: ${{ vars.AWS_REGION }}
       ecr_repository: ${{ vars.ECR_REPOSITORY_PROD }}
       eks_cluster: ${{ vars.EKS_CLUSTER_PROD }}
-      namespace: client-gateway
-      helm_release: client-gateway
-      chart_path: ./k8s/client-gateway/Chart.yaml
+      namespace: auth-ms
+      helm_release: auth-ms
+      chart_path: ./k8s/auth-ms/Chart.yaml
       deploy: true
     secrets: inherit
