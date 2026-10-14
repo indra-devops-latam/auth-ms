@@ -5,7 +5,7 @@ import { HealthCheckModule } from './health-check/health-check.module';
 
 @Module({
   imports: [
-    //AuthModule,
+    AuthModule,
     HealthCheckModule,
   ],
 

@@ -33,6 +33,10 @@ export class AuthService extends PrismaClient implements OnModuleInit {
         secret: envs.jwtSecret,
       });
 
+      console.log('sub', sub);
+      console.log('iat', iat);
+      console.log('exp', exp);
+
       return {
         user: user,
         token: await this.signJWT(user),
@@ -75,6 +79,8 @@ export class AuthService extends PrismaClient implements OnModuleInit {
 
       const { password: __, ...rest } = newUser;
 
+      console.log('__', __);
+
       return {
         user: rest,
         token: await this.signJWT(rest),
@@ -112,6 +118,8 @@ export class AuthService extends PrismaClient implements OnModuleInit {
       }
 
       const { password: __, ...rest } = user;
+
+      console.log('__', __);
 
       return {
         user: rest,
