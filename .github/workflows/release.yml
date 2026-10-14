@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy_dev:
+    if: github.ref == 'refs/heads/develop'
+    uses: indra-devops-latam/platform-ci-cd/.github/workflows/publish-deploy.yml@develop
+    with:
+      environment: dev
+      aws_region: ${{ vars.AWS_REGION }}
+      ecr_repository: ${{ vars.ECR_REPOSITORY_DEV }}
+      eks_cluster: ${{ vars.EKS_CLUSTER_DEV }}
+      namespace: client-gateway
+      helm_release: client-gateway
+      chart_path: ./k8s/client-gateway
+      deploy: true
+    secrets: inherit
+
+  deploy_prod:
+    if: github.ref == 'refs/heads/master'
+    uses: indra-devops-latam/platform-ci-cd/.github/workflows/publish-deploy.yml@develop
+    with:
+      environment: prod
+      aws_region: ${{ vars.AWS_REGION }}
+      ecr_repository: ${{ vars.ECR_REPOSITORY_PROD }}
+      eks_cluster: ${{ vars.EKS_CLUSTER_PROD }}
+      namespace: client-gateway
+      helm_release: client-gateway
+      chart_path: ./k8s/client-gateway/Chart.yaml
+      deploy: true
+    secrets: inherit
