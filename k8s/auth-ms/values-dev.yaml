@@ -1,0 +1,27 @@
+replicaCount: 1
+
+env:
+  - name: NODE_ENV
+    value: "development"
+  - name: PORT
+    value: "3000"
+  - name: NATS_SERVERS
+    value: "nats://nats"
+  - name: DATABASE_URL
+    valueFrom:
+      secretKeyRef:
+        name: auth-secrets
+        key: mongodb_url
+  - name: JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: auth-secrets
+        key: jwt_secret
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
