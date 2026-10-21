@@ -6,7 +6,7 @@ env:
   - name: PORT
     value: "3000"
   - name: NATS_SERVERS
-    value: "nats://nats"
+    value: "nats://nats.nats.svc.cluster.local:4222"
   - name: DATABASE_URL
     valueFrom:
       secretKeyRef:
